@@ -2,9 +2,6 @@ import React from "react";
 import classNames from "classnames";
 import "components/DayListItem.scss";
 
-{
-  /* function that format the props.spots for passing test*/
-}
 const formatSpots = (spots) => {
   if (!spots) {
     return `no spots remaining`;
@@ -24,8 +21,8 @@ export default function DayListItem(props) {
   });
 
   return (
-    <li className={dayClass} onClick={() => props.setDay(props.name)}>
-      <h2 className="text--regular">{props.name}</h2>
+    <li className={dayClass} onClick={() => props.setDay(props.name)} selected={props.selected}>
+      <h2 className="text--regular">{props.name}</h2> 
       <h3 className="text--light">{spotsReformating}</h3>
     </li>
   );
