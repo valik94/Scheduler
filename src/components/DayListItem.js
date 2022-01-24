@@ -13,6 +13,7 @@ const formatSpots = (spots) => {
 };
 
 export default function DayListItem(props) {
+  //console.log(props)
   const spotsReformating = formatSpots(props.spots);
   console.log(spotsReformating);
   let dayClass = classNames("day-list__item", {
