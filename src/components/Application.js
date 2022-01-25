@@ -5,7 +5,6 @@ import Appointment from "components/Appointment";
 import axios from "axios";
 import { getInterview, getAppointmentsForDay } from "helpers/selectors";
 
-
 export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
@@ -14,16 +13,12 @@ export default function Application(props) {
     appointments: [],
     interviewers: {},
   });
-  const dailyAppointments = getAppointmentsForDay(state, state.day)
-  
-
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
+  //console.log({dailyAppointments})
   const setDay = (day) => setState((prev) => ({ ...prev, day }));
   //const setDays = days => setState(prev => ({ ...prev, days }));
 
   useEffect(() => {
-    // const testDaysURL = `/api/days`;
-    // axios.get(testDaysURL).then((response) => {
-    //setDays(response.data); //setDays is an array
 
     Promise.all([
       axios.get("/api/days"),
@@ -39,14 +34,33 @@ export default function Application(props) {
         appointments: all[1].data,
         interviewers: all[2].data,
       }));
-      console.log("SECOND IS:", second.data);
-
+      //console.log("SECOND IS:", second.data);
+      console.log({days: all[0].data,
+        appointments: all[1].data,
+        interviewers: all[2].data} )
+    }).catch(error => {
+      console.log(error)
     });
-  }, []);
+  }, [])
 
-  const schedule = dailyAppointments.map((appointment) =>{
+console.log("State in Application is", state)
+  const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
- 
+    // console.log(`Appointment is ${appointment}`)
+  
+
+
+    return (
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+      />
+    );
+  });
+  //console.log(`schedule is: `,{schedule})
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -66,13 +80,18 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {dailyAppointments.map((appointment) => (
+        {/* {dailyAppointments.map((appointment) => (
           <Appointment key={appointment.id} {...appointment} />
-        ))}
-        <Appointment key={appointment.id} id={appointment.id} time={appointment.time} interview={interview} />
+        ))} */}
+        {/* <Appointment
+          key="last"
+          time="5pm"
+        /> */}
+
         {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
+        {schedule}
       </section>
     </main>
   );
-})
+  // })
 }
