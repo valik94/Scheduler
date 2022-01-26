@@ -11,8 +11,6 @@ export default function useVisualMode(initial) {
   const [history, setHistory] = useState([initial]);
   //transition to a new component mode
   function transition(updatedMode, replace) {
-   
-
     setMode(updatedMode);
     if (replace) {
       setHistory((prev) => [...prev.slice(0, -1), updatedMode]);

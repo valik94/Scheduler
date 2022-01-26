@@ -3,21 +3,40 @@ import "components/Application.scss";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
 import axios from "axios";
-import { getInterview, getAppointmentsForDay } from "helpers/selectors";
+import { getInterview, getAppointmentsForDay, getInterviewersForDay } from "helpers/selectors";
 
 export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    // you may put the line below, but will have to remove/comment hardcoded appointments variable
     appointments: [],
     interviewers: {},
   });
+
+  
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   //console.log({dailyAppointments})
   const setDay = (day) => setState((prev) => ({ ...prev, day }));
-  //const setDays = days => setState(prev => ({ ...prev, days }));
 
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+    axios.put("/api/appointments/:id", {interview})
+    .then(response => console.log(response))
+    .catch(error => console.log("There was an error: ",error))
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({
+      ...state,
+      appointments
+    });
+  }
+  
   useEffect(() => {
 
     Promise.all([
@@ -46,9 +65,7 @@ export default function Application(props) {
 console.log("State in Application is", state)
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
-    // console.log(`Appointment is ${appointment}`)
-  
-
+    const interviewers = getInterviewersForDay(state, state.day);
 
     return (
       <Appointment
@@ -56,6 +73,8 @@ console.log("State in Application is", state)
         id={appointment.id}
         time={appointment.time}
         interview={interview}
+        interviewers={interviewers}
+        bookInterview={bookInterview}
       />
     );
   });
