@@ -27,7 +27,7 @@ const [interviewer, setInterviewer] = useState(props.interviewer || null);
         reset();
         props.onCancel();
     };
-
+    console.log("student: ", props.student)
   return (<main className="appointment__card appointment__card--create">
   <section className="appointment__card-left">
     <form autoComplete="off">
@@ -38,6 +38,7 @@ const [interviewer, setInterviewer] = useState(props.interviewer || null);
         placeholder="Enter Student Name"
         value={name}
         onChange ={(event) => setName(event.target.value)}
+        data-testid="student-name-input"
       />
     </form>
     <InterviewerList 

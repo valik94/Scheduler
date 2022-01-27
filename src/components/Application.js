@@ -17,7 +17,7 @@ console.log("State in Application is", state)
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     const interviewers = getInterviewersForDay(state, state.day);
-
+    
     return (
       <Appointment
         key={appointment.id}
