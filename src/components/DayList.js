@@ -11,6 +11,7 @@ export default function DayList(props) {
         name={day.name}
         spots={day.spots}
         selected={day.name === props.value}
+        date={props.value}
         setDay={props.onChange}
       />
     );

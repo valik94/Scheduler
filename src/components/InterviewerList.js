@@ -1,8 +1,9 @@
 import React from "react";
 import InterviewerListItem from "components/InterviewerListItem";
 import "components/InterviewerList.scss";
+import PropTypes from 'prop-types';
 
-export default function InterviewerList(props) {
+function InterviewerList(props) {
   const { interviewers } = props;
   const parsedInterviewer = interviewers.map((interviewer) => {
     return (
@@ -22,8 +23,14 @@ export default function InterviewerList(props) {
     </section>
   );
 }
+InterviewerList.propTypes = {
+  interviewers: PropTypes.array.isRequired
+};
 
-{/* Potentially is missing something because when interviewer is clicked some props.onChange TypeError is found. Not sure why*/}
+export default InterviewerList;
+
+
+
 
 // import React from "react";
 // import "components/InterviewerList.scss";

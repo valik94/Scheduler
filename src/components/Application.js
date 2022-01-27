@@ -1,66 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "components/Application.scss";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
-import axios from "axios";
 import { getInterview, getAppointmentsForDay, getInterviewersForDay } from "helpers/selectors";
+import useApplicationData from "hooks/useApplicationData";
 
 export default function Application(props) {
-  const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    appointments: [],
-    interviewers: {},
-  });
-
+ 
+const { state, setDay, bookInterview, cancelInterview } = useApplicationData()
   
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   //console.log({dailyAppointments})
-  const setDay = (day) => setState((prev) => ({ ...prev, day }));
 
-  function bookInterview(id, interview) {
-    console.log(id, interview);
-    axios.put("/api/appointments/:id", {interview})
-    .then(response => console.log(response))
-    .catch(error => console.log("There was an error: ",error))
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-    setState({
-      ...state,
-      appointments
-    });
-  }
-  
-  useEffect(() => {
-
-    Promise.all([
-      axios.get("/api/days"),
-      axios.get("/api/appointments"),
-      axios.get("/api/interviewers"),
-    ]).then((all) => {
-      const [first, second, third] = all;
-      //console.log(first.data, second.data, third.data);
-
-      setState((prev) => ({
-        ...prev,
-        days: all[0].data,
-        appointments: all[1].data,
-        interviewers: all[2].data,
-      }));
-      //console.log("SECOND IS:", second.data);
-      console.log({days: all[0].data,
-        appointments: all[1].data,
-        interviewers: all[2].data} )
-    }).catch(error => {
-      console.log(error)
-    });
-  }, [])
 
 console.log("State in Application is", state)
   const schedule = dailyAppointments.map((appointment) => {
@@ -75,6 +26,8 @@ console.log("State in Application is", state)
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
+        day={state.day}
       />
     );
   });
@@ -102,13 +55,14 @@ console.log("State in Application is", state)
         {/* {dailyAppointments.map((appointment) => (
           <Appointment key={appointment.id} {...appointment} />
         ))} */}
-        {/* <Appointment
-          key="last"
-          time="5pm"
-        /> */}
+       
 
         {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
         {schedule}
+         <Appointment
+          key="last"
+          time="5pm"
+        />
       </section>
     </main>
   );
