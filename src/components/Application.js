@@ -12,7 +12,7 @@ import useApplicationData from "hooks/useApplicationData";
 export default function Application(props) {
   const { state, setDay, bookInterview, cancelInterview } =
     useApplicationData();
-
+  //function returns and renders the dailyAppointments selected and the schedule state is displayed
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   console.log("State in Application is", state);

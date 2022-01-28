@@ -9,7 +9,7 @@ export default function useApplicationData() {
     interviewers: {},
   });
 
-  //spots remaining feature
+  //spots remaining feature by finding day, the state array at that day index and updating the spots for that day
   const updateSpots = (day, increment) => {
     const copyArr = [...state.days];
     const findDay = state.days.find((value) => value.name === day);
@@ -21,8 +21,6 @@ export default function useApplicationData() {
   const setDay = (day) => setState((prev) => ({ ...prev, day }));
   //booking interview function takes in day, id and interview, requests api and updates spots data
   function bookInterview(day, id, interview) {
-    console.log(`ID AND INTERVIEW IS HERE:`, id, interview);
-
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
