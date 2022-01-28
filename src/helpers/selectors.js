@@ -1,12 +1,11 @@
 // import axios from "axios";
 import InterviewerList from "components/InterviewerList";
-import react, {useState, useEffect} from "react";
+import react, { useState, useEffect } from "react";
 import axios from "axios";
-
 
 //gets appointments for a given day, returns appointments found for that day
 function getAppointmentsForDay(state, day) {
-  console.log(`STATE DAYS IS`, state.days)
+  console.log(`STATE DAYS IS`, state.days);
   //console.log(`day is:`, day)
   //console.log(`state is: `,state)
 
@@ -23,17 +22,14 @@ function getAppointmentsForDay(state, day) {
   //... returns an array of appointments for that day
 }
 //finds total spots for a specific day
-function getSpotsForDay(state, day){
+function getSpotsForDay(state, day) {
   const findDay = state.days.find((value) => value.name === day);
-  if (!findDay){
+  if (!findDay) {
     return null;
   }
-  const dailySpots=findDay.spots;
-  return dailySpots //returns the numbers of spots in the specifically indicated passed in day
+  const dailySpots = findDay.spots;
+  return dailySpots; //returns the numbers of spots in the specifically indicated passed in day
 }
-
-
-
 
 function getInterviewersForDay(state, day) {
   //console.log("STATE.DAYS IS:", state.days);
@@ -58,7 +54,6 @@ function getInterviewersForDay(state, day) {
 
 //should return an object with interviewer data or returns null if no interview is booked
 function getInterview(state, interview) {
-
   if (!interview) {
     return null;
   }

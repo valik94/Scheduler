@@ -2,22 +2,24 @@ import React from "react";
 import "components/Application.scss";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
-import { getInterview, getAppointmentsForDay, getInterviewersForDay } from "helpers/selectors";
+import {
+  getInterview,
+  getAppointmentsForDay,
+  getInterviewersForDay,
+} from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
 
 export default function Application(props) {
- 
-const { state, setDay, bookInterview, cancelInterview } = useApplicationData()
-  
+  const { state, setDay, bookInterview, cancelInterview } =
+    useApplicationData();
+
   const dailyAppointments = getAppointmentsForDay(state, state.day);
-  //console.log({dailyAppointments})
 
-
-console.log("State in Application is", state)
+  console.log("State in Application is", state);
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     const interviewers = getInterviewersForDay(state, state.day);
-    
+
     return (
       <Appointment
         key={appointment.id}
@@ -31,7 +33,6 @@ console.log("State in Application is", state)
       />
     );
   });
-  //console.log(`schedule is: `,{schedule})
 
   return (
     <main className="layout">
@@ -52,19 +53,9 @@ console.log("State in Application is", state)
         />
       </section>
       <section className="schedule">
-        {/* {dailyAppointments.map((appointment) => (
-          <Appointment key={appointment.id} {...appointment} />
-        ))} */}
-       
-
-        {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
         {schedule}
-         <Appointment
-          key="last"
-          time="5pm"
-        />
+        <Appointment key="last" time="5pm" />
       </section>
     </main>
   );
-  // })
 }
