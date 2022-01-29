@@ -1,8 +1,30 @@
 # Interview Scheduler
 
-## Setup
+## Getting Started: 
+1. Clone the repository onto your local device.
+2. Install dependencies using the npm install command.
+3. Start the web server using the npm start command. The app will be served at http://localhost:8080/
+4. Go to http://localhost:8080/ in your browser.
+
+
+## Setup 
 
 Install dependencies with `npm install`.
+
+## Dependencies
+- axios
+- @testing-library/react-hooks
+- react
+- react-dom
+- react-scripts
+- react-test-renderer
+- node-sass
+- storybook
+- babel
+- classnames
+- eslint-plugin-cypress
+- normalize.css
+
 
 ## Running Webpack Development Server
 
@@ -30,8 +52,6 @@ npm test
 ```sh
 npm run storybook
 ```
-
-
 
 
 ## Screenshots
