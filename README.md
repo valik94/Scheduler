@@ -56,6 +56,9 @@ npm run storybook
 
 ## Screenshots
 
+1. Demonstration of creating a new appointment for "Valentin" 
 !["Creating appointment for Valentin"](https://github.com/valik94/Scheduler/blob/master/docs/creating%20appointment.gif)
+2. Demonstration of editing function of an appointment and changing student name to "Valentin Lyashenko"
 !["Editing appointment for Valentin to Valentin Lyashenko and different interviewer selected"](https://github.com/valik94/Scheduler/blob/master/docs/editing%20appointment.gif)
+3. Deleting appointment for Valentin Lyashenko and count reverses.
 !["Deleting appointment for Valentin Lyashenko"](https://github.com/valik94/Scheduler/blob/master/docs/deleting%20appointment%20and%20spots%20count%20reversed.gif)
