@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import { useState } from "react";
 // REQUIREMENTS: take in an initial mode
 
 //custom hook that allows to manage the visual mode of any component

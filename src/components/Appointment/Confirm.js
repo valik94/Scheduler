@@ -2,13 +2,12 @@ import React from "react";
 import Button from "components/Button";
 
 export default function Confirm(props) {
-  console.log("PROPS is: ", props);
-  {
+  
     /* props includes: 
         message: String eg. "Delete the appointment?"
         onConfirm:Function to be called when the user clicks the Confirm button
         onCancel:Function to be called when the user clicks the Cancel button */
-  }
+  
   return (
     <main className="appointment__card appointment__card--confirm">
       <h1 className="text--semi-bold">{props.message}</h1>

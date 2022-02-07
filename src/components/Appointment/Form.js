@@ -3,19 +3,18 @@ import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
 export default function Form(props) {
-  console.log(props);
-  {
+  
     /*EDIT student:String
 interviewer:Number
 interviewers:Array
 onSave:Function
 onCancel:Function */
-  }
-  {
+  
+  
     /*CREATE interviewers:Array
 onSave:Function
 onCancel:Function */
-  }
+  
 
   // const [student, setStudent] = useState(props.student || "");
   const [name, setName] = useState(props.student || "");
@@ -34,11 +33,14 @@ onCancel:Function */
     props.onCancel();
   };
 
-  console.log("student: ", props.student);
 
   function validate() {
     if (name === "") {
       setError("Student name cannot be blank");
+      return;
+    }
+    if(!interviewer){
+      setError("Interviewer must be selected")
       return;
     }
     setError("");

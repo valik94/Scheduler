@@ -15,7 +15,6 @@ export default function Application(props) {
   //function returns and renders the dailyAppointments selected and the schedule state is displayed
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
-  console.log("State in Application is", state);
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     const interviewers = getInterviewersForDay(state, state.day);

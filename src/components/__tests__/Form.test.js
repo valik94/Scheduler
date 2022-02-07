@@ -29,8 +29,6 @@ describe("Form", () => {
     const { getByTestId } = render(
       <Form interviewers={interviewers} student="Lydia Miller-Jones" />
     );
-    console.log(getByTestId("student-name-input"));
-    //console.log("++++++++++++++++++++++")
     expect(getByTestId("student-name-input")).toHaveValue("Lydia Miller-Jones");
   });
   it("validates that the student name is not blank", () => {

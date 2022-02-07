@@ -29,7 +29,6 @@ export default function Appointment(props) {
     cancelInterview,
     day,
   } = props;
-  console.log(`INTERVIEWWWW IN APPOINTMENT`, interview);
 
   function save(name, interviewer) {
     const interview = {
@@ -44,7 +43,6 @@ export default function Appointment(props) {
   }
   //deleting appointment based on interview id
   function deleteAppointment() {
-    console.log("Delete Appointment ID IS:", id);
     transition(DELETING, true);
     cancelInterview(day, id)
       .then(() => transition(EMPTY))
@@ -72,13 +70,13 @@ export default function Appointment(props) {
           interviewer={interview.interviewer}
           interviewers={interviewers}
           onSave={save}
-          onCancel={() => back()}
+          onCancel={back}
         />
       )}
       {mode === CREATE && (
         <Form
           interviewers={interviewers}
-          onCancel={() => back()}
+          onCancel={back}
           onSave={save}
         />
       )}
@@ -87,19 +85,17 @@ export default function Appointment(props) {
       {mode === CONFIRM && (
         <Confirm
           message="Are you sure you want to delete?"
-          onCancel={() => back()}
-          onConfirm={() => deleteAppointment()}
+          onCancel={back}
+          onConfirm={deleteAppointment}
         />
       )}
       {mode === ERROR_SAVE && (
-        <Error onClose={() => back()} message="Saving Error Occured" />
+        <Error onClose={back} message="Saving Error Occured" />
       )}
       {mode === ERROR_DELETE && (
         <Error
-          // message="Are you sure you want to delete?"
-          // onCancel={() => back()}
-          // onConfirm={() => deleteAppointment()}
-          onClose={() => back()}
+       
+          onClose={back}
           message="Deleting Error Occured"
         />
       )}
