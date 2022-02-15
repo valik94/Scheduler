@@ -16,12 +16,11 @@ onSave:Function
 onCancel:Function */
   
 
-  // const [student, setStudent] = useState(props.student || "");
   const [name, setName] = useState(props.student || "");
-  const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [interviewer, setInterviewer] = useState((props.interviewer && props.interviewer.id) || null);
   const [error, setError] = useState("");
 
-  //NOTE: leave onSave function for now as it involves API interfacing -> NEXT WEEK
+  
   const reset = () => {
     setName("");
     setError("");
